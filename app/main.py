@@ -3,29 +3,25 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.endpoints import matches
 from app.db.session import engine, Base
 
-# Create database tables
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Sports Betting Arbitrage & Analytics API")
 
-# 2. Configure allowed origins (Include Vercel + Localhost)
+# Add your EXACT Vercel domain here (no trailing slash)
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://*.vercel.app",  # Allows Vercel deployments
-    "*"                      # Allow all for testing
+    "https://1star-sports-tracker-git-main-nyxmere.vercel.app/",  # <--- REPLACE THIS WITH YOUR ACTUAL VERCEL URL
 ]
 
-# 3. Add the middleware to your app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],     # Set to ["*"] to grant access globally
+    allow_origins=origins,       # Pass the list directly (NO WILDCARDS with credentials)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Include routers
 app.include_router(matches.router, prefix="/api/matches", tags=["Matches"])
 
 @app.get("/")
