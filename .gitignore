@@ -1,0 +1,21 @@
+
+# Sensitive secrets
+.env
+.env.*
+!.env.example
+
+# Virtual Envs & Dependencies
+.venv/
+venv/
+node_modules/
+__pycache__/
+
+# Database & OS files
+*.db
+*.sqlite3
+.DS_Store
+
+
+
+*.pyc
+
