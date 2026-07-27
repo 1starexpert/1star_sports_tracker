@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { API_URL } from '../config';
 
 function TrendPanel({ matchId, onBack }) {
   const [historyData, setHistoryData] = useState(null)
@@ -8,7 +9,7 @@ function TrendPanel({ matchId, onBack }) {
   useEffect(() => {
     setLoading(true)
     // Fetch chronological odds timeline for this specific match
-    fetch(`http://localhost:8000/api/matches/${matchId}/history`)
+    fetch(`${API_URL}/api/matches/${matchId}/history`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Failed to fetch history (Status: ${response.status})`)
@@ -49,7 +50,7 @@ function TrendPanel({ matchId, onBack }) {
 
   return (
     <div style={{ backgroundColor: '#2d2d2d', padding: '30px', borderRadius: '8px' }}>
-      <button 
+      <button
         onClick={onBack}
         style={{
           backgroundColor: '#555',
@@ -108,10 +109,10 @@ function TrendPanel({ matchId, onBack }) {
                   </td>
                   <td style={{ padding: '10px', fontWeight: 'bold' }}>{record.sportsbook}</td>
                   <td style={{ padding: '10px' }}>{record.team_name}</td>
-                  <td style={{ 
-                    padding: '10px', 
+                  <td style={{
+                    padding: '10px',
                     color: record.price > 0 ? '#4caf50' : '#ff4d4d',
-                    fontWeight: 'bold' 
+                    fontWeight: 'bold'
                   }}>
                     {record.price > 0 ? `+${record.price}` : record.price}
                   </td>
