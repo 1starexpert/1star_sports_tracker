@@ -1,5 +1,4 @@
-git init
-0.110.0
+fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 gunicorn>=21.2.0
 sqlalchemy>=2.0.0
