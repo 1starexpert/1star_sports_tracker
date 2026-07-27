@@ -11,7 +11,8 @@ app = FastAPI(title="Sports Betting Arbitrage & Analytics API")
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "1star-sports-tracker-git-main-nyxmere.vercel.app",  # <--- REPLACE THIS WITH YOUR ACTUAL VERCEL URL
+    "https://1star-sports-tracker.vercel.app",
+    "https://1star-sports-tracker-git-main-nyxmere.vercel.app",
 ]
 
 app.add_middleware(
